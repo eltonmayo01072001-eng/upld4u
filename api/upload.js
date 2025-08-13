@@ -6,21 +6,21 @@ export default async function handler(req, res) {
   }
 
   try {
-    const file = req.body.file; // base64 string from frontend
+    const file = req.body.file; 
 
-    // Generate filename with timestamp + random number
+    
     const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
     const randomNum = Math.floor(Math.random() * 100000);
     const extension = req.body.filename?.split(".").pop() || "jpg";
     const filename = `${timestamp}_${randomNum}.${extension}`;
 
-    // GitHub repo info
+    
     const owner = "eltonmayo01072001-eng";
     const repo = "storage";
     const branch = "main";
     const path = `uploads/${filename}`;
 
-    // Upload to GitHub
+   
     const response = await fetch(
       `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
       {
